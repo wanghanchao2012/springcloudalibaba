@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/example-business/example-business.iml" filepath="$PROJECT_DIR$/example-business/example-business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example-common/example-common.iml" filepath="$PROJECT_DIR$/example-common/example-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example-gateway/example-gateway.iml" filepath="$PROJECT_DIR$/example-gateway/example-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example-provider/example-provider.iml" filepath="$PROJECT_DIR$/example-provider/example-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloudalibaba.iml" filepath="$PROJECT_DIR$/springcloudalibaba.iml" />
+    </modules>
+  </component>
+</project>

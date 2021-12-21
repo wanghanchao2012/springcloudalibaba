@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev #开发环境
+  application:
+    name: example-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+
+
+server:
+  port: 12002
+
+
+service-url:
+  nacos-user-service: http://example-business
