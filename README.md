@@ -32,7 +32,7 @@ https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4
 
 Hoxton.SR1相适应的springboot和alibabacloud的版本默认读取bootstrap.yaml的配置（试着删了用appcation.yml会报错，是强制使用）
 但是Hoxton.SR12或2020.01等更高版本修改了默认读取bootstrap.yaml的规则，如果在Hoxton.SR1的基础上直接升级到2020.01会升级失败，
-因为Hoxton.SR3后默认不再支持bootstrap.xml,如果想继续使用需要引入
+因为Hoxton.SR3后默认不再支持bootstrap.xml,如果想继续升级需要引入
 ```xml
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
