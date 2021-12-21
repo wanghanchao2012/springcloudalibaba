@@ -11,11 +11,11 @@
 
 中新增一个右下方会弹出是否使用runDashboard
 
-<img width="489" alt="DF669558-49A1-4DD2-BB3B-92B781FCC7ED" src="https://user-images.githubusercontent.com/35331347/146879864-81ef5890-7a1e-4b70-8994-e732eb9ff3d5.png">
+<img width="438" alt="DF669558-49A1-4DD2-BB3B-92B781FCC7ED" src="https://user-images.githubusercontent.com/35331347/146879864-81ef5890-7a1e-4b70-8994-e732eb9ff3d5.png">
    
 复制一个并这是VM options
 
-<img width="1263" alt="8268AA95-F37E-4DEA-A741-E74D54A6ACD4" src="https://user-images.githubusercontent.com/35331347/146879878-a36d4b6c-17f1-4d99-b636-164836a41690.png">
+<img width="438" alt="8268AA95-F37E-4DEA-A741-E74D54A6ACD4" src="https://user-images.githubusercontent.com/35331347/146879878-a36d4b6c-17f1-4d99-b636-164836a41690.png">
 
 
 在gateway中必须引入（注意：gateway中不引入下面dependency会导致lb://example-business会导致动态负载均衡不生效）
