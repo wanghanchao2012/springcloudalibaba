@@ -51,45 +51,45 @@ sentinel在springcloudalibaba中的使用
  pom.xml相关配置
 ```xml
 <dependencies>
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-transport-simple-http</artifactId>
-		</dependency>
-		<!--alibaba sentinel 热点限流-->
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-parameter-flow-control</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-web-servlet</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-datasource-nacos</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.example</groupId>
-			<artifactId>example-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-	</dependencies>
+	<dependency>
+		<groupId>com.alibaba.cloud</groupId>
+		<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.alibaba.cloud</groupId>
+		<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.alibaba.cloud</groupId>
+		<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.alibaba.csp</groupId>
+		<artifactId>sentinel-transport-simple-http</artifactId>
+	</dependency>
+	<!--alibaba sentinel 热点限流-->
+	<dependency>
+		<groupId>com.alibaba.csp</groupId>
+		<artifactId>sentinel-parameter-flow-control</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.alibaba.csp</groupId>
+		<artifactId>sentinel-web-servlet</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.alibaba.csp</groupId>
+		<artifactId>sentinel-datasource-nacos</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.example</groupId>
+		<artifactId>example-common</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+</dependencies>
 ```
  
  sentinel持久化的配置方式：
@@ -121,7 +121,7 @@ controlBehavior：流控效果，0-快速失败，1-warm up，2-排队等待
 clusterMode：是否集群 
  
  application.yml配置
- ```xml
+ ```yml
  server:
   port: 8401
 spring:
