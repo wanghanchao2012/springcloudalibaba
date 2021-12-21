@@ -16,14 +16,27 @@
 </dependency>
 ```
 
-<font color=#FF0000 >**注意：搭建微服务程序各种异常多数都是版本不兼容和没有正确引入包导致的问题**></font>
+**注意：搭建微服务程序各种异常多数都是版本不兼容和没有正确引入包导致的问题**
 
-如果springcloud和springboot的版本对应不上可能会存在注册中心无法注册到nacos的情况
+- 如果springcloud和springboot的版本对应不上可能会存在注册中心无法注册到nacos的情况
 版本不一致会出现各种莫名其妙的问题
 
-Springcloud 阿里巴巴 && SpringBoot版本对应表<BR>
+- Springcloud 阿里巴巴 && SpringBoot版本对应表
 https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E
 
  
- runDashbouad不显示请参考：
+- runDashbouad不显示请参考：
  https://github.com/wanghanchao2012/springcloudalibaba/blob/master/config-show.md
+
+![Uploading image.png…]()
+
+Hoxton.SR1相适应的springboot和alibabacloud的版本默认读取bootstrap.yaml的配置（试着删了用appcation.yml会报错，是强制使用）
+但是Hoxton.SR12或2020.01等更高版本修改了默认读取bootstrap.yaml的规则，如果在Hoxton.SR1的基础上直接升级到2020.01会升级失败，因为2020.01后默认不再支持bootstrap.xml
+如果想继续使用需要引入
+```xml
+   <dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-bootstrap</artifactId>
+				<version>3.0.4</version>
+			</dependency>
+```
