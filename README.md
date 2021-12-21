@@ -28,11 +28,11 @@ https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4
 - runDashbouad不显示请参考：
  https://github.com/wanghanchao2012/springcloudalibaba/blob/master/config-show.md
 
-<img width="863" alt="图片1" src="https://user-images.githubusercontent.com/35331347/146888331-cfd9515b-ac8a-4d06-bd35-0bd4505dbe2e.png">
+<img width="600" height="400" alt="图片1" src="https://user-images.githubusercontent.com/35331347/146888331-cfd9515b-ac8a-4d06-bd35-0bd4505dbe2e.png">
 
 Hoxton.SR1相适应的springboot和alibabacloud的版本默认读取bootstrap.yaml的配置（试着删了用appcation.yml会报错，是强制使用）
 但是Hoxton.SR12或2020.01等更高版本修改了默认读取bootstrap.yaml的规则，如果在Hoxton.SR1的基础上直接升级到2020.01会升级失败，
-因为2020.01后默认不再支持bootstrap.xml,如果想继续使用需要引入
+因为Hoxton.SR3后默认不再支持bootstrap.xml,如果想继续使用需要引入
 ```xml
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
