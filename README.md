@@ -108,20 +108,20 @@ sentinel在springcloudalibaba中的使用
         "clusterMode": false
     }
  ]
-    此处的/testA是的要配置的业务接口的路径 
-    
-    具体参数说明：
-   	resource：资源名称
-	limitApp：来源应用
-	grade：阀值类型，0-线程数，1-qps
-	count：单机阀值
-	strategy：流控模式，0-直接，1-关联，2-链路
-	controlBehavior：流控效果，0-快速失败，1-warm up，2-排队等待
-	clusterMode：是否集群 
  ```
+此处的/testA是的要配置的业务接口的路径 
+
+具体参数说明：
+resource：资源名称
+limitApp：来源应用
+grade：阀值类型，0-线程数，1-qps
+count：单机阀值
+strategy：流控模式，0-直接，1-关联，2-链路
+controlBehavior：流控效果，0-快速失败，1-warm up，2-排队等待
+clusterMode：是否集群 
  
- application.xml配置
- ```java
+ application.yml配置
+ ```xml
  server:
   port: 8401
 spring:
