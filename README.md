@@ -1,9 +1,9 @@
 # springcloudalibaba
 可参考官方文档搭建： https://nacos.io/zh-cn/docs/quick-start.html
 本次只记录自己搭建的过程
-从最新稳定版本 下载稳定版本放入到source_code中 文件夹名称为nacos_server
-执行sh startup.sh -m standalone启动单机模式
-访问http://127.0.0.1:8848/nacos即可进入管理页面，用户名密码皆是nacos
+- 从最新稳定版本 下载稳定版本放入到source_code中,文件夹名称为nacos_server
+- 执行sh startup.sh -m standalone启动单机模式
+- 访问http://127.0.0.1:8848/nacos 即可进入管理页面，用户名密码皆是nacos
  
 在gateway中必须引入（注意：gateway中不引入下面dependency会导致lb://example-business会导致动态负载均衡不生效）
 ```xml
