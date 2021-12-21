@@ -33,3 +33,6 @@
 
 如果springcloud和springboot的版本对应不上可能会存在注册中心无法注册到nacos的情况
 版本不一致会出现各种莫名其妙的问题
+
+Springcloud 阿里巴巴 && SpringBoot版本对应表
+https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E
