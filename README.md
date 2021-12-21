@@ -16,6 +16,7 @@
 
 
 在gateway中必须引入（注意：gateway中不引入下面dependency会导致lb://example-business会导致动态负载均衡不生效）
+```java
 <dependency>
    <groupId>org.springframework.cloud</groupId>
    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
@@ -23,3 +24,4 @@
    <type>pom</type>
    <scope>import</scope>
 </dependency>
+```
