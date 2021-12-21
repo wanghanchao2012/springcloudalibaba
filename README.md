@@ -23,3 +23,7 @@
 
 Springcloud 阿里巴巴 && SpringBoot版本对应表<BR>
 https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E
+
+ 
+ runDashbouad不显示请参考：
+ https://github.com/wanghanchao2012/springcloudalibaba/blob/master/config-show.md
