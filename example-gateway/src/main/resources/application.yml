@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   profiles:
     active: dev #开发环境
   application:
@@ -24,7 +26,7 @@ spring:
           #uri: http://localhost:12001         #匹配后提供服务的路由地址
           uri: lb://example-business          #匹配后提供服务的路由地址
           predicates:
-            - Path= /demo/**
+            - Method=GET,POST
     sentinel:
       transport:
         dashboard: 127.0.0.1:8080
@@ -35,7 +37,7 @@ spring:
         dsl:
           nacos:
             server-addr: 127.0.0.1:8848
-            dataId: example-business
+            dataId: example-gateway-sentinel-config
             groupId: DEFAULT_GROUP
             data-type: json
             rule-type: flow
@@ -44,4 +46,4 @@ server:
 
 logging:
   level:
-    root: debug
+    root: info
