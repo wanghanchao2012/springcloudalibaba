@@ -92,9 +92,61 @@ sentinel在springcloudalibaba中的使用
 </dependencies>
 ```
  
- sentinel持久化的配置方式：
+ application.yml配置
+ ```yml
+ spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev #开发环境
+  application:
+    name: example-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        refresh-enabled: true
+        file-extension: yml
+        data-id: ${spring.application.name}-${spring.profiles.active}
+        group-id: DEFAULT_GROUP
+      username: nacos
+      password: nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: example_business_routh
+          uri: lb://example-business          #匹配后提供服务的路由地址
+          predicates:
+            - Method=GET,POST
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+        # 应用与Sentinel控制台交互的端口，应用本地会起一个该端口占用的HttpServer
+        # 默认8719端口，假如端口被占用，依次+1，直到找到未被占用端口
+        port: 8719
+#      datasource:
+#        dsl:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            dataId: example-gateway-sentinel-config
+#            groupId: DEFAULT_GROUP
+#            data-type: json
+#            rule-type: flow
+ ```
  
- 在配置列表加入${spring.application.name}的dataId，数据类型 json
+ 
+ 由于使用sentinel时需要启动一个服务，而该服务没有依赖其他数据库存储介质所以重启后会丢失之前的配置
+ 次问题目前我测试了两种有效的解决方式：
+ 1.将sentinel控流的配置持久化到nacos中
+ 2.将sentinel控流编码到java中
+ 
+ 首先记录第一种方式将sentinel控流的配置持久化到nacos中：
+ 
+ 关键一步是要在sentinel下面配置datasource的相关参数，并在nacos配置列表加入${spring.application.name}的dataId，数据类型 json，此处的/testA是的要配置的业务接口的路径 
  内容：
  ```json 
  [
@@ -109,49 +161,33 @@ sentinel在springcloudalibaba中的使用
     }
  ]
  ```
-此处的/testA是的要配置的业务接口的路径 
-
-具体参数说明：
-- resource：资源名称
-- limitApp：来源应用
-- grade：阀值类型，0-线程数，1-qps
-- count：单机阀值
-- strategy：流控模式，0-直接，1-关联，2-链路
-- controlBehavior：流控效果，0-快速失败，1-warm up，2-排队等待
-- clusterMode：是否集群 
+ 并访问testA，在sentinel的控流规则中即可看到
+其中网关限流规则 GatewayFlowRule 的字段解释如下：
+```
+resource：资源名称，可以是网关中的 route 名称或者用户自定义的 API 分组名称。
+resourceMode：规则是针对 API Gateway 的 route（RESOURCE_MODE_ROUTE_ID）还是用户在 Sentinel 中定义的 API 分组（RESOURCE_MODE_CUSTOM_API_NAME），默认是 route。
+grade：限流指标维度，同限流规则的 grade 字段。
+count：限流阈值
+intervalSec：统计时间窗口，单位是秒，默认是 1 秒。
+controlBehavior：流量整形的控制效果，同限流规则的 controlBehavior 字段，目前支持快速失败和匀速排队两种模式，默认是快速失败。
+burst：应对突发请求时额外允许的请求数目。
+maxQueueingTimeoutMs：匀速排队模式下的最长排队时间，单位是毫秒，仅在匀速排队模式下生效。
+paramItem：参数限流配置。若不提供，则代表不针对参数进行限流，该网关规则将会被转换成普通流控规则；否则会转换成热点规则。其中的字段：
+parseStrategy：从请求中提取参数的策略，目前支持提取来源 IP（PARAM_PARSE_STRATEGY_CLIENT_IP）、Host（PARAM_PARSE_STRATEGY_HOST）、任意 Header（PARAM_PARSE_STRATEGY_HEADER）和任意 URL 参数（PARAM_PARSE_STRATEGY_URL_PARAM）四种模式。
+fieldName：若提取策略选择 Header 模式或 URL 参数模式，则需要指定对应的 header 名称或 URL 参数名称。
+pattern：参数值的匹配模式，只有匹配该模式的请求属性值会纳入统计和流控；若为空则统计该请求属性的所有值。（1.6.2 版本开始支持）
+matchStrategy：参数值的匹配策略，目前支持精确匹配（PARAM_MATCH_STRATEGY_EXACT）、子串匹配（PARAM_MATCH_STRATEGY_CONTAINS）和正则匹配（PARAM_MATCH_STRATEGY_REGEX）。（1.6.2 版本开始支持）
+```
+具体sentinel限流、降级、热点等配置参见官方文档：https://sentinelguard.io/zh-cn/docs/api-gateway-flow-control.html
  
- application.yml配置
- ```yml
- server:
-  port: 8401
-spring:
-  application:
-    name: example-sentinel
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-    sentinel:
-      transport:
-        dashboard: 127.0.0.1:8080
-        # 应用与Sentinel控制台交互的端口，应用本地会起一个该端口占用的HttpServer
-        # 默认8719端口，假如端口被占用，依次+1，直到找到未被占用端口
-        port: 8719
-      datasource:
-        dsl:
-          nacos:
-            server-addr: 127.0.0.1:8848
-            dataId: example-sentinel
-            groupId: DEFAULT_GROUP
-            data-type: json
-            rule-type: flow
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*
- ```
- 
+ 第二种将sentinel控流编码到java中
+ 下列是官方的例子（如果对应上面我自己的例子httpbin_route改为example_business_routh即可）
+ spring.cloud.gateway.routes.id=httpbin_route
+ ![image](https://user-images.githubusercontent.com/35331347/147173731-a5db1de2-395c-4c6a-9bfc-5736484847b2.png)
+上图中的httpbin_route就是gateway的application.yml中的 spring.cloud.gateway.routes.id，用于对应唯一routeid对应的sentinel限流等规则的配置，
+可以有多个route 分别对应多个id（多个路由规则）
+<BR>
+具体代码见：https://github.com/alibaba/Sentinel/blob/master/sentinel-demo/sentinel-demo-spring-cloud-gateway/src/main/java/com/alibaba/csp/sentinel/demo/spring/sc/gateway/GatewayConfiguration.java
 <<EOF
 
 
