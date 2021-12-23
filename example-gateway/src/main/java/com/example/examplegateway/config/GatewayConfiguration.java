@@ -54,7 +54,14 @@ public class GatewayConfiguration {
 
     @PostConstruct
     public void doInit() {
-        initCustomizedApis();
+        /**
+         *
+         * 该处规则在application.yml中已经配置，
+         * spring.cloud.gateway.routes.id=example_business_routh
+         * 等价
+         * ApiDefinition api1 = new ApiDefinition("example_business_routh")
+         */
+        //initCustomizedApis();
         initGatewayRules();
         GatewayCallbackManager.setBlockHandler(new MyBlockRequestHandler());
     }
@@ -66,7 +73,7 @@ public class GatewayConfiguration {
         限流的时候可以针对这个自定义的 API 分组维度进行限流。
         */
         Set<ApiDefinition> definitions = new HashSet<>();
-        ApiDefinition api1 = new ApiDefinition("example_gateway_api")
+        ApiDefinition api1 = new ApiDefinition("example_business_routh")
                 .setPredicateItems(new HashSet<ApiPredicateItem>() {{
                     add(new ApiPathPredicateItem().setPattern("/demo/**")
                             .setMatchStrategy(SentinelGatewayConstants.PARAM_MATCH_STRATEGY_PREFIX));
@@ -87,7 +94,7 @@ public class GatewayConfiguration {
         count: QPS即每秒钟允许的调用次数
         intervalSec: 每隔多少时间统计一次汇总数据，统计时间窗口，单位是秒，默认是 1 秒。
         */
-        rules.add(new GatewayFlowRule("example_gateway_api")
+        rules.add(new GatewayFlowRule("example_business_routh")
                 .setResourceMode(SentinelGatewayConstants.RESOURCE_MODE_CUSTOM_API_NAME)
                 .setCount(2)
                 .setIntervalSec(1)
