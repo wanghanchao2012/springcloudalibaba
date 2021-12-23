@@ -161,6 +161,7 @@ sentinel在springcloudalibaba中的使用
     }
  ]
  ```
+ 并访问testA，在sentinel的控流规则中即可看到
 其中网关限流规则 GatewayFlowRule 的字段解释如下：
 ```
 resource：资源名称，可以是网关中的 route 名称或者用户自定义的 API 分组名称。
@@ -185,7 +186,7 @@ matchStrategy：参数值的匹配策略，目前支持精确匹配（PARAM_MATC
  ![image](https://user-images.githubusercontent.com/35331347/147173731-a5db1de2-395c-4c6a-9bfc-5736484847b2.png)
 上图中的httpbin_route就是gateway的application.yml中的 spring.cloud.gateway.routes.id，用于对应唯一routeid对应的sentinel限流等规则的配置，
 可以有多个route 分别对应多个id（多个路由规则）
- 
+具体代码见：https://github.com/alibaba/Sentinel/blob/master/sentinel-demo/sentinel-demo-spring-cloud-gateway/src/main/java/com/alibaba/csp/sentinel/demo/spring/sc/gateway/GatewayConfiguration.java
 <<EOF
 
 
