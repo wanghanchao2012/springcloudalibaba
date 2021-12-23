@@ -94,7 +94,7 @@ sentinel在springcloudalibaba中的使用
  
  sentinel持久化的配置方式：
  
- 在配置列表加入${spring.application.name}的dataId，数据类型 json
+ 在配置列表加入${spring.application.name}的dataId，数据类型 json，此处的/testA是的要配置的业务接口的路径 
  内容：
  ```json 
  [
@@ -109,7 +109,7 @@ sentinel在springcloudalibaba中的使用
     }
  ]
  ```
-此处的/testA是的要配置的业务接口的路径 
+
 
 ```
 resource：资源名称，可以是网关中的 route 名称或者用户自定义的 API 分组名称。
@@ -126,6 +126,7 @@ fieldName：若提取策略选择 Header 模式或 URL 参数模式，则需要�
 pattern：参数值的匹配模式，只有匹配该模式的请求属性值会纳入统计和流控；若为空则统计该请求属性的所有值。（1.6.2 版本开始支持）
 matchStrategy：参数值的匹配策略，目前支持精确匹配（PARAM_MATCH_STRATEGY_EXACT）、子串匹配（PARAM_MATCH_STRATEGY_CONTAINS）和正则匹配（PARAM_MATCH_STRATEGY_REGEX）。（1.6.2 版本开始支持）
 ```
+具体sentinel限流、降级、热点等配置参见官方文档：https://sentinelguard.io/zh-cn/docs/api-gateway-flow-control.html
  
  application.yml配置
  ```yml
@@ -162,7 +163,8 @@ management:
  
  spring.cloud.gateway.routes.id=httpbin_route
  ![image](https://user-images.githubusercontent.com/35331347/147173731-a5db1de2-395c-4c6a-9bfc-5736484847b2.png)
-上图中的httpbin_route就是gateway的application.yml中的 spring.cloud.gateway.routes.id，用于对应唯一routeid对应的sentinel限流等规则的配置
+上图中的httpbin_route就是gateway的application.yml中的 spring.cloud.gateway.routes.id，用于对应唯一routeid对应的sentinel限流等规则的配置，
+可以有多个route 分别对应多个id（多个路由规则）
  
 <<EOF
 
