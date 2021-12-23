@@ -130,37 +130,43 @@ matchStrategy：参数值的匹配策略，目前支持精确匹配（PARAM_MATC
  
  application.yml配置
  ```yml
- server:
-  port: 8401
-spring:
+ spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev #开发环境
   application:
-    name: example-sentinel
+    name: example-gateway
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        refresh-enabled: true
+        file-extension: yml
+        data-id: ${spring.application.name}-${spring.profiles.active}
+        group-id: DEFAULT_GROUP
+      username: nacos
+      password: nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: example_business_routh
+          uri: lb://example-business          #匹配后提供服务的路由地址
+          predicates:
+            - Method=GET,POST
     sentinel:
       transport:
         dashboard: 127.0.0.1:8080
         # 应用与Sentinel控制台交互的端口，应用本地会起一个该端口占用的HttpServer
         # 默认8719端口，假如端口被占用，依次+1，直到找到未被占用端口
         port: 8719
-      datasource:
-        dsl:
-          nacos:
-            server-addr: 127.0.0.1:8848
-            dataId: example-sentinel
-            groupId: DEFAULT_GROUP
-            data-type: json
-            rule-type: flow
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*
  ```
  
- 
+ 下列是官方的例子（如果对应上面我自己的例子httpbin_route改为example_business_routh即可）
  spring.cloud.gateway.routes.id=httpbin_route
  ![image](https://user-images.githubusercontent.com/35331347/147173731-a5db1de2-395c-4c6a-9bfc-5736484847b2.png)
 上图中的httpbin_route就是gateway的application.yml中的 spring.cloud.gateway.routes.id，用于对应唯一routeid对应的sentinel限流等规则的配置，
