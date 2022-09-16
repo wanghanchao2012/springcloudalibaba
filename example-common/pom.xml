@@ -7,7 +7,7 @@
 		<artifactId>springcloudalibaba</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.example</groupId>
+	<packaging>jar</packaging>
 	<artifactId>example-common</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>example-common</name>
