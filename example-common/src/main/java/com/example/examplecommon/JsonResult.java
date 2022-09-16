@@ -43,8 +43,12 @@ public class JsonResult implements Serializable {
         message = "";
     }
 
-    public static JsonResult fail() {
+    public static JsonResult failed() {
         return new JsonResult(ERROR, "", "fail");
+    }
+
+    public static JsonResult failed(String message) {
+        return new JsonResult(ERROR, "", message);
     }
 
     public static JsonResult success() {
