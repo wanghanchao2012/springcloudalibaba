@@ -30,7 +30,7 @@
 	<modules>
 		<module>example-common</module>
 		<module>example-sentinel</module>
-		<module>example-sentinel</module>
+		<module>example-business</module>
 		<module>example-provider</module>
 		<module>example-gateway</module>
 	</modules>
