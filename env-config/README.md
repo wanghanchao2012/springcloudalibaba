@@ -17,7 +17,11 @@ brew services start jenkins
     (注意: 此处有很大的坑,就mac版本来讲,如果安装的不是最新版本,那么会报各种缺失插件的错误, 手动安装插件头疼,索性干脆就用最新版的,不过从官网来看
     “开源 Devops 工具 Jenkins 在官方博客平台宣布，从2022年6 月 28 日发布的 Jenkins 2.357 和将于 9 月发布的 LTS 版本开始，Jenkins 需要 Java 11 才能使用，将放弃 Java 8。”
     未来最新版将不再支持jdk1.8,国内多数开发团队及人员在使用1.8,此时应该怎么办?  好办,下一个jdk11及以上的版本专门用于jenkins部署)
-    
+
+
+
+http://localhost:9090/    admin   111111    
+
     安装参考文章:https://blog.csdn.net/qq_35692974/article/details/125523267
 
 ------
