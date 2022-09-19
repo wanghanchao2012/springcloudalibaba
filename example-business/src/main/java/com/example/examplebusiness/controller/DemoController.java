@@ -30,7 +30,7 @@ public class DemoController {
     @GetMapping("/sayhi")
     public JsonResult sayHi(@Value("${mytest.name1:configEmpty}") String name) {
         String property = en.getProperty("mytest.name1");
-        System.out.println("是的，感觉不错！！！！！！！");
+        System.out.println("看看一次能不能发布成功");
         return JsonResult.success("当前端口:" + port + ",配置名称:" + name);
     }
 
