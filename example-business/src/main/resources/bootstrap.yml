@@ -6,17 +6,17 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 10.240.23.120:8848
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 10.240.23.120:8848
         refresh-enabled: true
         enabled: true
         enable-remote-sync-config: true
         file-extension: yaml
         data-id: ${spring.application.name}-${spring.profiles.active}
         group-id: DEFAULT_GROUP
-      username: nacos
-      password: nacos
+      username: wanghanchao
+      password: wanghanchao
 
 
 server:
