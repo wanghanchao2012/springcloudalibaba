@@ -31,7 +31,7 @@ public class DemoController {
     public JsonResult sayHi(@Value("${mytest.name1:configEmpty}") String name) {
         String property = en.getProperty("mytest.name1");
         System.out.println("是的，感觉不错！！！！！！！");
-        return JsonResult.success("current server port:" + port + ",config name:" + name);
+        return JsonResult.success("当前端口:" + port + ",配置名称:" + name);
     }
 
     @RequestMapping("/env")
