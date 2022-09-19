@@ -58,8 +58,8 @@ BUILD_ID=DONTKILLME
 
 jenkins可配置多个jdk
 在安装jenkins的时候,用到的jdk时11 当在全局配置中配置其他jdk时,在发布项目时会有jdk版本冲突提示,但是不影响构建结果
-<img width="801" height="360" alt="image" src="https://user-images.githubusercontent.com/35331347/190947513-8bcff6e9-2bcb-419c-82be-735c1c524a79.png">
-<img width="801" height="360" alt="image" src="https://user-images.githubusercontent.com/35331347/190947581-f1cdedff-d115-42ee-93d0-04eab5a6fd72.png">
+<img width="700" height="360" alt="image" src="https://user-images.githubusercontent.com/35331347/190947513-8bcff6e9-2bcb-419c-82be-735c1c524a79.png">
+<img width="700" height="360" alt="image" src="https://user-images.githubusercontent.com/35331347/190947581-f1cdedff-d115-42ee-93d0-04eab5a6fd72.png">
 
 
 Jenkins 的maven settings.xml代码
